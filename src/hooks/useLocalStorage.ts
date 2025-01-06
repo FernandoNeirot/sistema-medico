@@ -7,18 +7,22 @@ interface ILocalStorage {
 
 const useLocalStorage = ({ key }: ILocalStorage) => {
   const [value, setValue] = useState<string | null>(null);
+
   useEffect(() => {
-    const handleStorageChange = () => {
+    const handleStorageChange2 = () => {
       const response = LOCAL_STORAGE.get(key);
       setValue(response);
     };
 
-    window.addEventListener("storage", handleStorageChange);
+    // Handle initial load
+    handleStorageChange2();
+
+    window.addEventListener("storage", handleStorageChange2);
 
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("storage", handleStorageChange2);
     };
-  }, []);
+  }, [key]);
   return {
     value,
   };
