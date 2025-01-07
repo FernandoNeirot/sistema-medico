@@ -1,0 +1,19 @@
+.rbc-btn-group{
+    background-color: #4992ea;
+}
+
+.rbc-btn-group > button{
+    color: #aaaaaa;
+}
+
+.rbc-today {
+    background-color: rgb(158, 158, 255);
+}
+
+.rbc-header,.rbc-toolbar-label,.rbc-button-link, .rbc-label,.rbc-agenda-empty,.rbc-agenda-event-cell,.rbc-agenda-time-cell span,.rbc-agenda-date-cell {
+    color: #aaaaaa;
+}
+
+.rbc-current .rbc-button-link,.rbc-off-range .rbc-button-link{
+    color:rgb(80, 80, 80)
+}
