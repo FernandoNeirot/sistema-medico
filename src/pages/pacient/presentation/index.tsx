@@ -6,12 +6,14 @@ import { IPacient } from "../../../shared/_architecture/domain/pacient.interface
 import { getMedicalRecords } from "../../../redux/sliders/medicalRecords/getMedicalRecords";
 import { IMedicalRecord } from "../../../shared/_architecture/domain/medicalRecord.interfaces";
 import moment from "moment";
+import { getDoctor } from "../../../redux/sliders/doctor/getDoctor";
 
 const PacientPage = () => {
   const dispatch = useDispatch<any>();
   const user = useSelector((state: any) => state.user);
   const pacientData = useSelector((state: any) => state.pacient);
   const pacient: IPacient = pacientData.data;
+  
   const medicalRecord: IMedicalRecord[] = useSelector(
     (state: any) => state.medicalRecord.data
   );
@@ -23,6 +25,12 @@ const PacientPage = () => {
     if (pacient && pacient.userId === user.id)
       dispatch(getMedicalRecords({ id: pacient.id }));
   }, [pacientData]);
+
+  useEffect(() => {
+    //TODO: el  get dortor debe de poder recibir un array de ids, y responder todos
+    if (medicalRecord && medicalRecord.length>0)
+      dispatch(getDoctor({ id: medicalRecord[0].doctorId }));
+  }, [medicalRecord]);
 
   return (
     <>

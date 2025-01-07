@@ -17,20 +17,30 @@ const HomePage = () => {
         }}
       />
       <div
-        className="w-full overflow-hidden bg-transparent flex items-center justify-center"
+        className="relative w-full overflow-hidden bg-transparent "
         style={{ height: "calc(100vh - 115px)", zIndex: 10 }}
       >
-        <div>hola</div>
+        <div className="text-[5em]">Bienvenido</div>        
+        <div className="text-[2em] bg-white opacity-50">Podra buscar turnos disponibles por especialista</div>
+        <div className="text-[2em] bg-white opacity-50 mt-5">Ver su historial medico</div>
       </div>
       <div
         className="relative w-full overflow-hidden bg-cyan-900"
-        style={{ height: "calc(100vh - 50px)", zIndex: 1 }}
+        style={{
+          backgroundImage: 'url("https://media.licdn.com/dms/image/D4E12AQGg6srPMZpHmg/article-cover_image-shrink_720_1280/0/1720630344992?e=2147483647&v=beta&t=n2LKULldShuNHMH-RKPcAZiMEQDg236s33MvFWOpEP4"',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          // position: "fixed",
+          width: "100%",
+          height: "calc(100vh - 50px)",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+        }}
       >
-        <div>
-          <div>Central de Turnos</div>
-          <div>Laboratorio</div>
-          <div>Diagnostico por imagenes</div>
-          <div></div>
+        <div className="flex items-center justify-center h-full gap-10" >
+          <div className="w-[350px] bg-blue-100 p-10 rounded-2xl">Laboratorio</div>
+          <div className="w-[350px] bg-blue-100 p-10 rounded-2xl ">Diagnostico por imagenes</div>
         </div>
       </div>
       <div

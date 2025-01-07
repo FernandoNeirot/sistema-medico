@@ -33,7 +33,7 @@ const HeaderComponent = () => {
   }, []);
 
   return (
-    <div className="relative">      
+    <div className="relative z-50">      
       {location.pathname.includes("login") ? null : (<>
       {
         isMenuFixed && (
@@ -68,19 +68,19 @@ const HeaderComponent = () => {
             onClick={() => handleChangePage("calendar")}
             className="mr-5 border rounded-xl py-1 hover:bg-slate-700 px-3"
           >
-            Turnos
+            Central de Turnos
           </button>
           <button
             onClick={() => handleChangePage("doctor")}
             className="mr-5 border rounded-xl py-1 hover:bg-slate-700 px-3"
           >
-            Page Medico
+            Mis Pacientes
           </button>
           <button
             onClick={() => handleChangePage("pacient")}
             className="mr-5 border rounded-xl py-1 hover:bg-slate-700 px-3"
           >
-            Page Paciente
+            Mi Historial Medico
           </button>
           <button
             onClick={() => handleChangePage("admin")}
