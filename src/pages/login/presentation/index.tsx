@@ -1,3 +1,4 @@
+ 
 import { useEffect, useState } from 'react'
 import InputComponent from '../../../shared/components/form/Input'
 import Loading from '../../../shared/components/form/loading';
@@ -9,6 +10,7 @@ const LoginPage = () => {
   const [user, setUser] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const { isError, loading, login, isAuth } = useLogin();
+  
 
   const handleLogin = async () => {
     login(user, pass);
@@ -16,6 +18,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (isAuth) 
       window.location.assign("/");
+    
   }, [isAuth]);
 
   useEffect(() => {
@@ -23,8 +26,18 @@ const LoginPage = () => {
       window.location.assign("/");
   }, []);
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen mx-5">
-      <div className="relative w-full max-w-[400px] min-h-[200px] border-spacing-0 border border-blue-200 p-2 bg-blue-900">
+    <div className="relative flex flex-col items-center justify-center h-screen mx-5" style={{
+      backgroundImage: 'url("https://images3.alphacoders.com/101/1010294.jpg")',
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      position: "fixed",
+      width: "100%",
+      height: "100%",
+      top: 0,
+      left: 0,
+      zIndex: 0,
+    }}>
+      <div className="relative w-full max-w-[400px] min-h-[200px] border-spacing-0 border rounded-2xl shadow-2xl  border-blue-800 p-2 bg-blue-950">
         {loading && <Loading />}
         <p className=" text-center text-white p-5">Ingreso al sistema</p>
         <InputComponent
@@ -45,7 +58,7 @@ const LoginPage = () => {
             Error de credenciales
           </p>
         )}
-        <div className="flex justify-center mt-5">
+        <div className="flex justify-center mt-5 mb-2">
           <ButtonComponent
             onClick={() => (!loading ? handleLogin() : {})}
             text="Ingresar"

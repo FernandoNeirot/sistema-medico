@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import HomePage from "./pages/home/presentation";
@@ -7,7 +8,18 @@ import DoctorPage from "./pages/doctor/presentation";
 import PacientPage from "./pages/pacient/presentation";
 import CalendarPage from "./pages/calendar/presentation";
 import AdministrationPage from "./pages/admin/presentation";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserTypeSlider } from "./redux/sliders/userType/getUserType";
+import PrivateRoute from "./shared/components/PrivateRoute";
 function App() {
+  const dispatch = useDispatch<any>();
+  const userType = useSelector((state: any) => state.userType);
+
+  useEffect(() => {
+    if (userType.data.length === 0) dispatch(getUserTypeSlider());
+  }, []);
+
   return (
     <div className="w-full bg-black">
       <BrowserRouter>
@@ -15,11 +27,38 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="login" element={<LoginPage />} />
-          {/* Estas pagina deben ser protegidas */}
-          <Route path="doctor" element={<DoctorPage />} />
-          <Route path="admin" element={<AdministrationPage />} />
-          <Route path="pacient" element={<PacientPage />} />
-          <Route path="calendar" element={<CalendarPage />} />
+          <Route
+            path="doctor"
+            element={
+              <PrivateRoute>
+                <DoctorPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="admin"
+            element={
+              <PrivateRoute>
+                <AdministrationPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="pacient"
+            element={
+              <PrivateRoute>
+                <PacientPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="calendar"
+            element={
+              <PrivateRoute>
+                <CalendarPage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
